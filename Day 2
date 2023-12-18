@@ -1,0 +1,57 @@
+//Problem Statement 4
+// Find Equilibrium index. Equilibrium index is sum to the left of index and right of index is same. Index itself is not counted.
+
+#Brute force ... O(n^2)
+
+#include <bits/stdc++.h> 
+int findEquilibriumIndex(vector<int> &arr) {
+    for (int i=0;i<arr.size();i++){
+        int left=0;
+        int right=0;
+        int j=i-1;
+        int k=i+1;
+        while(j>=0){
+            left=left+arr[j];
+            j--;
+        }
+        while(k<arr.size()){
+            right=right+arr[k];
+            k++;
+        }
+        if(left==right){
+            return i;
+        }
+    }
+    return -1;
+}
+
+
+#Efficient Method.......O(n)
+
+#include <bits/stdc++.h> 
+int findEquilibriumIndex(vector<int> &arr) {
+    int n=arr.size();
+
+    int totalSum=0;
+    for(int i=0;i<n;i++){
+        totalSum+=arr[i];
+    }
+
+    int left=0;
+    for (int j;j<n;j++){
+        int right=totalSum-left-arr[j];
+        if(left==right){
+            return j;
+        }
+        left+=arr[j];
+    }
+    return -1;
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//Problem Statement 5
+// First Missing Positive
+
+
+
