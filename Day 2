@@ -53,5 +53,25 @@ int findEquilibriumIndex(vector<int> &arr) {
 //Problem Statement 5
 // First Missing Positive
 
+#include <bits/stdc++.h> 
+#include <unordered_set>
+
+int firstMissing(int arr[], int n)
+{   unordered_set<int> set;
+
+    // Insert all elements into the set
+    for (int i = 0; i < n; ++i) {
+        set.insert(arr[i]);
+    }
+
+    // Check for the first missing positive integer
+    for (int i = 1; i <= n + 1; ++i) {
+        if (set.find(i) == set.end()) {
+            return i;
+        }
+    }
+
+    return -1; // Should not reach here
+}
 
 
