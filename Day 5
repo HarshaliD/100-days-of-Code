@@ -1,0 +1,92 @@
+//Problem Statement 11
+//Sum of Zeros , Coverage Matrix
+
+#include <bits/stdc++.h> 
+#include <set>
+int coverageOfMatrix(vector<vector<int>> &mat) {
+    int row=mat.size();
+    int col=mat[0].size();
+    int ans=0;
+    for (int i=0;i<row;i++){
+        for (int j=0;j<col;j++){
+            if (mat[i][j]==0){
+                if (i-1>=0 && mat[i-1][j]==1)
+                    ans++;
+                    if(j+1<col && mat[i][j+1]==1)
+                    ans++;
+                    if(i+1<row && mat[i+1][j]==1)
+                    ans++;
+                    if(j-1>=0 && mat[i][j-1]==1)
+                    ans++;
+
+            }
+        }
+    }
+    return ans;
+
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//Problem Statement 12
+//Matrix symmetry,Transpose
+
+//Considers All elements
+#include <bits/stdc++.h> 
+bool isMatrixSymmetric(vector<vector<int>> matrix){
+    int row=matrix.size();
+    int col=matrix[0].size();
+    int count=0;
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+            if(matrix[i][j]==matrix[j][i]){
+                count++;
+            }
+        }
+    }
+    if (count==row*col){
+        return true;
+    } 
+    else{
+        return false;
+    }
+}
+
+
+//Considers only the upper half triangle, as in symmetric upper half and lower half are equal
+#include <bits/stdc++.h> 
+bool isMatrixSymmetric(vector<vector<int>> matrix){
+    int n = matrix.size();
+
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (matrix[i][j] != matrix[j][i]) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//Problem Statement 13
+//Rotate the matrix inplace by 90 degree
+
+#include <bits/stdc++.h> 
+#include <algorithm>
+void inplaceRotate(vector<vector<int>> &inputArray)
+{   int N = inputArray.size();
+
+    // REVERSE every row
+    for (int i = 0; i < N; i++)
+        reverse(inputArray[i].begin(), inputArray[i].end());
+
+    // Performing Transpose
+    for (int i = 0; i < N; i++) {
+        for (int j = i; j < N; j++)
+            swap(inputArray[i][j], inputArray[j][i]);
+    }
+
+}
