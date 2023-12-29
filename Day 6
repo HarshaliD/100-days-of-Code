@@ -1,0 +1,112 @@
+//Problem Statement 14
+//Set matrix zero
+
+// Brute Force
+#include <bits/stdc++.h>
+
+void rowconvert(vector<vector<int>> &matrix,int i){
+    for (int j=0;j < matrix[i].size();j++){
+        if(matrix[i][j]!=0){
+            matrix[i][j]=-1;
+        }
+
+    }
+}
+void colconvert(vector<vector<int>> &matrix,int j){
+    for (int i=0;i<matrix.size();i++){
+        if(matrix[i][j]!=0){
+            matrix[i][j]=-1;
+        }
+
+    }
+}
+void setZeros(vector<vector<int>> &matrix)
+{   
+    for (int i=0;i<matrix.size();i++){
+        for (int j=0;j < matrix[i].size();j++){       //matrix[i].size bcoz  the inner loop stays within the bounds of the current row.
+            if(matrix[i][j]==0){
+                rowconvert(matrix,i);
+                colconvert(matrix,j);
+            }
+        }
+    }
+    for (int i=0;i<matrix.size();i++){
+        for (int j=0;j < matrix[i].size();j++){
+            if(matrix[i][j]==-1){
+                matrix[i][j]=0;
+            }
+        }
+    }
+}
+
+//Optimal
+#include <bits/stdc++.h>
+
+void setZeros(vector<vector<int>> &matrix)
+{   
+	int row = matrix.size();
+    int col = matrix[0].size();
+
+    std::vector<int> row_zeros(row, 0);
+    std::vector<int> col_zeros(col, 0);
+
+    for (int i=0;i<matrix.size();i++){
+        for (int j=0;j<matrix[i].size();j++){
+            if (matrix[i][j]==0){
+                row_zeros[i]=1;
+                col_zeros[j]=1;
+            }
+        }
+    }
+
+    for (int i=0;i<matrix.size();i++){
+        for (int j=0;j<matrix[i].size();j++){
+            if (row_zeros[i]==1 || col_zeros[j]==1){
+                matrix[i][j]=0;
+            }
+        }
+    }
+    
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//Problem Statement 15
+//Print spriral
+
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void spiralPrint(int **input, int nRows, int nCols) {
+    int T, B, L, R, dir;
+    T = 0;
+    B = nRows - 1;
+    L = 0;
+    R = nCols - 1;
+    dir = 0;
+    int i;
+
+    while (T <= B && L <= R) {
+        if (dir == 0) {
+            for (i = L; i <= R; i++)
+                cout << input[T][i] << " ";
+            T++;
+        } else if (dir == 1) {
+            for (i = T; i <= B; i++)
+                cout << input[i][R] << " ";
+            R--;
+        } else if (dir == 2) {
+            for (i = R; i >= L; i--)
+                cout << input[B][i] << " ";
+            B--;
+        } else if (dir == 3) {
+            for (i = B; i >= T; i--)
+                cout << input[i][L] << " ";
+            L++;
+        }
+        dir = (dir + 1) % 4;
+    }
+}
