@@ -1,0 +1,73 @@
+//Problem Statement 16
+//Make Unique Array
+
+#include <bits/stdc++.h> 
+#include <unordered_set>
+int minElementsToRemove(vector<int> &arr)
+{
+	unordered_set<int> value;
+	for (int element : arr) {
+        value.insert(element);
+    }
+
+	int diff = arr.size() - value.size();
+	return diff;
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Problem Statement 17
+//First non repeating character
+
+#include <bits/stdc++.h>
+#include <unordered_set> 
+char firstNonRepeatingCharacter(string str) {
+
+    unordered_set<char> alpha;
+    unordered_set<char> repeated;
+
+    for (char ch : str) {
+        if (alpha.find(ch) != alpha.end()) {
+            // character is already in the set, mark it as repeated
+            repeated.insert(ch);
+        } else {
+            // character is not in the set, add it
+            alpha.insert(ch);
+        }
+    }
+
+    for (char ch : str) {
+        if (repeated.find(ch) == repeated.end()) {
+            // first non-repeating character found
+            return ch;
+        }
+    }
+
+    // if no non-repeating character found, return the first character of the string
+    return str[0];
+  
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Problem Statement 18
+//Longest Subarray Zero
+
+#include <bits/stdc++.h>
+
+int LongestSubsetWithZeroSum(vector < int > arr) {
+
+  unordered_map<int,int> mp;
+  int sum=0;
+  int ans = 0;
+  mp[0] = -1;
+  for(int i=0;i<arr.size();i++){
+    sum+=arr[i];
+    if(mp.find(sum)!=mp.end()){
+      ans=max(ans,i-mp[sum]);
+    }
+    else{
+      mp[sum]=i;
+    }
+  }
+  return ans;
+
+}
