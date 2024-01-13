@@ -1,0 +1,26 @@
+//Problem Statement 19
+ //Count all sub-arrays having sum divisible by k
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//Problem Statement 20
+//Group Anagrams
+
+#include <bits/stdc++.h> 
+vector<vector<string>> getGroupedAnagrams(vector<string> &inputStr, int n)
+{
+    vector<vector<string>>anagram;
+    map<string,vector<string>>grp;
+    for(int i=0;i<n;i++){
+        string s = inputStr[i];
+        sort(s.begin(), s.end());
+        grp[s].push_back(inputStr[i]);
+    }
+    for(auto element : grp){
+        anagram.push_back(element.second);
+    }
+    return anagram;
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
