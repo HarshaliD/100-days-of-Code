@@ -58,6 +58,32 @@ string encode(string &message)
     return text;
 }
 
+
+#method 2
+#include <bits/stdc++.h> 
+string encode(string &message) {
+    string output;
+    output += message[0];  // Add the first character of the input string to the output
+    int count = 1;  // Initialize count to 1 for the first character
+
+    for (int i = 0; i < message.size() - 1; i++) {
+        if (message[i] != message[i + 1]) {
+            // If the current character is different from the next one
+            output += to_string(count);  // Add the count of the current character to the output
+            output += message[i + 1];  // Add the next character to the output
+            count = 1;  // Reset the count for the new character
+        } else {
+            // If the current character is the same as the next one
+            count++;  // Increment the count
+        }
+    }
+
+    // Add the count for the last character after the loop ends
+    output += to_string(count);
+
+    return output;
+}
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Problem statement 8
 //Minimum Paranthesis
